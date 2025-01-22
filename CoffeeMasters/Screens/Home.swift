@@ -19,12 +19,17 @@ struct Home: View {
                     ForEach(category.products) {
                         product in
                         
-                        NavigationLink{
-                            Details()
-                        } label: {
+                        ZStack{
+                            NavigationLink(destination: Details(product: product)){
+                                    EmptyView()
+                            }.opacity(0)
                             ProductItem(product:product)
+                                .padding(.top)
+                                .padding(.leading)
+                                .padding(.bottom, 12)
                         }
-                    }
+                    }.listRowSeparator(.hidden)
+                    
                 }
             }.navigationTitle("Products")
         }
